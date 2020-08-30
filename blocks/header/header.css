@@ -1,6 +1,17 @@
 .header {
+    position: relative;
+    min-width: 320px;
     max-width: 882px;
     height: 119px;
     margin: 0 auto;
     padding-top: 45px;
+    padding-left: 0;
+}
+
+@media screen and (max-width: 1279px) {
+    .header { 
+        padding-top: calc((100vw - 320px)/(1279 - 320) * (45 - 28) + 28px);
+        height: calc((100vw - 320px)/(1279 - 320) * (119 - 56) + 56px);
+        padding-left: calc((100vw - 320px)/(1279 - 320) * (0 - 27) + 27px);
+    }
 }
