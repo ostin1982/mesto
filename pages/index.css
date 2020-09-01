@@ -9,10 +9,7 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
-<<<<<<< HEAD
-=======
 @import url(../blocks/profile/__edit/profile__edit.css);
->>>>>>> new
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__occupation/profile__occupation.css);
 @import url(../blocks/profile/__eddit-button/profile__eddit-button.css);
@@ -26,9 +23,6 @@
 @import url(../blocks/element/__name/element__name.css);
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/footer/footer.css);
-<<<<<<< HEAD
-@import url(../blocks/footer/footer__copiright/footer__copiright.css);
-=======
 @import url(../blocks/footer/footer__copiright/footer__copiright.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_is-open/popup_is-open.css);
@@ -39,4 +33,3 @@
 @import url(../blocks/popup/__occupation/popup__occupation.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__close/popup__close.css);
->>>>>>> new

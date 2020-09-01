@@ -1,19 +1,10 @@
 .header {
-<<<<<<< HEAD
-    position: relative;
-    min-width: 320px;
-=======
     min-width: 282px;
->>>>>>> new
     max-width: 882px;
     height: 119px;
     margin: 0 auto;
     padding-top: 45px;
-<<<<<<< HEAD
-    padding-left: 0;
-=======
     padding-left: 0px;
->>>>>>> new
 }
 
 @media screen and (max-width: 1279px) {
