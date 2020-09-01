@@ -1,6 +1,10 @@
 .elements {
     position: relative;
+<<<<<<< HEAD
     min-width: 320px;
+=======
+    min-width: 282px;
+>>>>>>> new
     max-width: 882px;
     height: 100%;
     margin: 0 auto;

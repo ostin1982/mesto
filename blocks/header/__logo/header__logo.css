@@ -1,10 +1,18 @@
 .header__logo {
     position: relative;
+<<<<<<< HEAD
     width: 142px;
+=======
+    max-width: 142px;
+>>>>>>> new
 }
 
 @media screen and (max-width: 1279px) {
     .header__logo {
+<<<<<<< HEAD
 width: calc((100vw - 320px)/(1279 - 320) * (142 - 104) + 104px);
+=======
+        width: calc((100vw - 320px)/(1279 - 320) * (142 - 104) + 104px);
+>>>>>>> new
 }
 }
