@@ -1,0 +1,11 @@
+.profile__eddit-button_img {
+    width: 24px;
+    padding: 0;
+    margin: auto;
+}
+
+@media screen and (max-width: 620px) {
+    .profile__eddit-button_img { 
+        width: 18px;
+    }
+}

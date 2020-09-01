@@ -1,0 +1,13 @@
+.content {
+    position: relative;
+    min-width: 320px;
+    max-width: 882px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 360px) {
+    .content { 
+        width: 100vw;
+    }
+}
