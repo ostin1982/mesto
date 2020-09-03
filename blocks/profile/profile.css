@@ -1,9 +1,5 @@
 .profile {
-<<<<<<< HEAD
-    min-width: 320px;
-=======
     min-width: 282px;
->>>>>>> new
     max-width: 882px;
     height: 100%;
     padding-top: 40px;
@@ -31,10 +27,4 @@
         justify-items: center;
         justify-content: center;
     }
-<<<<<<< HEAD
 }
-
-
-=======
-}
->>>>>>> new

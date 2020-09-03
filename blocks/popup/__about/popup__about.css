@@ -1,14 +1,14 @@
-.popup__name {
+.popup__about {
     width: 358px;
     height: 58px;    
     border-top:none;
     border-right: none;
     border-left: none;
     box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup__name::placeholder {
-    font-family: Inter;
+.popup__about::placeholder {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -16,8 +16,9 @@
     color: #000000;
 }
 
+
 @media screen and (max-width: 530px) {
-    .popup__name { 
-        max-width: 248px;
+    .popup__about { 
+        max-width: 228px;
     }
 }

@@ -2,17 +2,26 @@
     position: absolute;
     top: -45px;
     left: 415px;
+    background-image: url(../../../images/close.svg);
+    width: 58px;
+    height: 58px;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 1);
+    border: none;
+    z-index: -1;
 }
 
 .popup__close:hover {
     opacity: 0.6;
     cursor: pointer;
+    transition: all 0.5s ease-out;
 }
 
 @media screen and (max-width: 530px) {
     .popup__close { 
-        top: -25px;
-        left: 275px;
-        width: 30px;
+        top: -42px;
+        left: 245px;
     }
 }

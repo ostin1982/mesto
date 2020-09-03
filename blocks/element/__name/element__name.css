@@ -1,5 +1,5 @@
 .element__name {
-    font-family: Inter;
+    max-width: 190px;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;

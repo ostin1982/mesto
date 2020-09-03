@@ -8,7 +8,6 @@
 }
 
 .popup__occupation::placeholder {
-    font-family: Inter;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -18,6 +17,6 @@
 
 @media screen and (max-width: 530px) {
     .popup__occupation { 
-        max-width: 248px;
+        max-width: 228px;
     }
 }
