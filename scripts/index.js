@@ -3,38 +3,35 @@ let popupOpenButton = document.querySelector('.profile__edit-button');
 let popupCloseButton = popup.querySelector('.popup__close');
 let name = document.querySelector('.profile__name');
 let occupation = document.querySelector('.profile__occupation');
-let popupName = document.querySelector('.popup__about_name');
-let popupOccupation = document.querySelector('.popup__about_occupation');
-let popupSubmitButton = document.querySelector('.popup__submit');
-let popupInput = document.querySelector('.popup__input');
+let popupName = popup.querySelector('.popup__about_name');
+let popupOccupation = popup.querySelector('.popup__about_occupation');
+let popupInput = popup.querySelector('.popup__input');
 
 
-//вызвать popup
 function popupToggle () {
     popup.classList.toggle('popup_is-open');
 };
 
 
-//поменять Имя и Род интересов
 function newName (evt) {
     evt.preventDefault();
 
     name.textContent = popupName.value;
-    occupation.innerText = popupOccupation.value;
+    occupation.textContent = popupOccupation.value;
+
+    popupToggle();
 };
 
 
-//новое имя в графу popup
-function about (evt) {
-    evt.preventDefault();
+function about () {
 
-    popupName.innerText = name.value;
-    popupOccupation.innerText = occupation.value;
+    name.textContent = popupName.value;
+    occupation.textContent = popupOccupation.value;
+
+    popupToggle();
 };
 
 
-popupOpenButton.addEventListener('click', popupToggle);
+popupOpenButton.addEventListener('click', about);
 popupCloseButton.addEventListener('click', popupToggle);
 popupInput.addEventListener('submit', newName);
-popupSubmitButton.addEventListener('click', newName);
-popupSubmitButton.addEventListener('click', popupToggle);
