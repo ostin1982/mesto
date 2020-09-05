@@ -25,8 +25,8 @@ function newName (evt) {
 
 function about () {
 
-    name.value = popupName.textContent;
-    occupation.value = popupOccupation.textContent;
+    popupName.value = name.textContent;
+    popupOccupation.value = occupation.textContent;
 
     popupToggle();
 };
