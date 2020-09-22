@@ -1,11 +1,59 @@
-let popup = document.querySelector('.popup');
-let popupOpenButton = document.querySelector('.profile__edit-button');
-let popupCloseButton = popup.querySelector('.popup__close');
-let name = document.querySelector('.profile__name');
-let occupation = document.querySelector('.profile__occupation');
-let popupName = popup.querySelector('.popup__about_name');
-let popupOccupation = popup.querySelector('.popup__about_occupation');
-let popupInput = popup.querySelector('.popup__input');
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+const popup = document.querySelector('.popup');
+const popupOpenButton = document.querySelector('.profile__edit-button');
+const popupCloseButton = popup.querySelector('.popup__close');
+const nickName = document.querySelector('.profile__name');
+const occupation = document.querySelector('.profile__occupation');
+const popupNickName = popup.querySelector('.popup__about_name');
+const popupOccupation = popup.querySelector('.popup__about_occupation');
+const popupInput = popup.querySelector('.popup__input');
+const popupSubmit = popup.querySelector('.popup__submit');
+const popupEdit = popup.querySelector('.popup__edit');
+const elements = document.querySelector('.elements');
+const element = document.querySelector('.element').content;
+const profileAddButton = document.querySelector('.profile__add-button');
+const elementImg = document.querySelectorAll('.element__img');
+const elementName = document.querySelector('.element__name');
+const foto = document.querySelector('.foto');
+const fotoCloseButton = document.querySelector('.foto__close');
+const fotoNickName = document.querySelector('.foto__about_name');
+const fotoOccupation = document.querySelector('.foto__about_occupation');
+const fotoInput = document.querySelector('.foto__input');
+const fotoSubmit = document.querySelector('.foto__submit');
+const fotoEdit = document.querySelector('.foto__edit');
+const popupFoto = document.querySelector('.popup-foto');
+const popupFotoBig = document.querySelector('.popup-foto__big');
+const popupFotoEdit = document.querySelector('.popup-foto__edit');
+const popupFotoClose = document.querySelector('.popup-foto__close');
+const popupFotoElement = document.querySelector('.popup-foto__element');
+
+
 
 
 function popupToggle () {
@@ -13,25 +61,110 @@ function popupToggle () {
 };
 
 
-function newName (evt) {
-    evt.preventDefault();
+function newName (event) {
+    event.preventDefault();
 
-    name.textContent = popupName.value;
+    nickName.textContent = popupNickName.value;
     occupation.textContent = popupOccupation.value;
 
     popupToggle();
 };
 
 
-function about () {
-
-    popupName.value = name.textContent;
+function about() {
+    popupNickName.value = nickName.textContent;
     popupOccupation.value = occupation.textContent;
 
     popupToggle();
-};
+}
 
 
 popupOpenButton.addEventListener('click', about);
 popupCloseButton.addEventListener('click', popupToggle);
 popupInput.addEventListener('submit', newName);
+
+
+function fotoToggle () {
+    foto.classList.toggle('foto_is-open');
+};
+
+
+function newNameFoto (event) {
+    event.preventDefault();
+    
+    fotoNickName.value = "Название";
+    fotoOccupation.value = "Ссылка на картинку";
+
+    fotoToggle();
+};
+
+
+
+profileAddButton.addEventListener('click', newNameFoto);
+fotoCloseButton.addEventListener('click', fotoToggle);
+fotoInput.addEventListener('submit', newNameFoto);
+fotoSubmit.addEventListener('click',  fotoNew);
+
+
+function popupFotoToggle () {
+    popupFoto.classList.toggle('popup-foto_is-open');
+};
+
+
+popupFotoClose.addEventListener('click', popupFotoToggle);
+
+
+function render() {
+    elements.innerHTML = "";
+    initialCards.forEach(renderElement);
+}
+
+
+function renderElement(card, index) {
+    const htmlElement = element.cloneNode(true);
+    htmlElement.querySelector('.element__name').innerText = card.name;
+    htmlElement.querySelector('.element__img').src = card.link;
+    htmlElement.querySelector('.element__img').alt = card.name;
+    htmlElement.querySelector('.element__card').setAttribute("id", index);
+    htmlElement.querySelector('.element__like').addEventListener('click', function(event) {
+        event.target.classList.toggle('element__like_active');
+    })    
+    htmlElement.querySelectorAll('.elememt__basket').forEach((button) => {
+        button.addEventListener('click', fotoDelete);
+    });
+
+function bigFotoPopup() {
+    popupFotoBig.src = card.link;
+    popupFotoEdit.innerText = card.name;
+    popupFotoBig.value = card.name;
+    elements.addEventListener('click', popupFotoToggle);    
+    };
+
+    htmlElement.querySelectorAll('.element__img').forEach((event) => {
+        event.addEventListener('click', bigFotoPopup);
+    })
+
+    elements.appendChild(htmlElement);
+}
+
+
+function fotoDelete(event) {
+    const index = getIdFromEvent(event);
+    initialCards.splice(index, 1);
+
+    render();
+}
+
+function fotoNew(event) {
+    const index = getIdFromEvent(event);
+    initialCards.splice(0, 0, {name: fotoNickName.value, link: fotoOccupation.value});
+
+    render();
+}
+
+
+function getIdFromEvent(event) {
+	return event.target.parentNode.getAttribute("id");
+}
+
+render();

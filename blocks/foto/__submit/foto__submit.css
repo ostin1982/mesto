@@ -1,4 +1,4 @@
-.popup__submit {
+.foto__submit {
     width: 358px;
     height: 50px;
     background: #000000;
@@ -13,14 +13,14 @@
     border: none;
 }
 
-.popup__submit:hover {
+.foto__submit:hover {
     opacity: 0.6;
     cursor: pointer;
     transition: all 0.5s ease-out;
 }
 
 @media screen and (max-width: 530px) {
-    .popup__submit { 
+    .foto__submit { 
         max-width: 200px;
     }
 }

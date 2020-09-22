@@ -1,4 +1,4 @@
-.popup__about {
+.foto__about {
     width: 358px;
     height: 58px;    
     border-top:none;
@@ -8,7 +8,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.popup__about::placeholder {
+.foto__about::placeholder {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -18,7 +18,7 @@
 
 
 @media screen and (max-width: 530px) {
-    .popup__about { 
+    .foto__about { 
         max-width: 200px;
     }
 }

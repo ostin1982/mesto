@@ -1,14 +1,14 @@
-.popup__close {
+.popup-foto__close {
     position: absolute;
-    top: -45px;
-    right: -45px;
+    top: -48px;
+    right: -48px;
     background-image: url(../../../images/close.svg);
     width: 58px;
     height: 58px;
     background-repeat: no-repeat;
     background-position: center;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     z-index: -1;
 }

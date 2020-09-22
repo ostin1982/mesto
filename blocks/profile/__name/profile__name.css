@@ -8,11 +8,13 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 550px;
     }
     
     @media screen and (max-width: 1279px) {
         .profile__name { 
             font-size: calc((100vw - 320px)/(1279 - 320) * (42 - 27) + 27px);
+            max-width: calc((100vw - 320px)/(1279 - 320) * (550 - 260) + 260px);
         }
     }
     

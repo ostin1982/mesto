@@ -1,4 +1,4 @@
-.popup__container {
+.foto__container {
     position: relative;
     width: 100%;
     max-width: 430px;
@@ -8,10 +8,10 @@
     border-radius: 10px;
     box-sizing: border-box;
 }
-
+    
 @media screen and (max-width: 530px) {
-    .popup__container { 
-        max-width: 240px;
+    .foto__container { 
+         max-width: 240px;
         padding: 36px 20px 30px 20px;
-    }
+        }
 }
