@@ -38,8 +38,6 @@ const popupEdit = popup.querySelector('.popup__edit');
 const elements = document.querySelector('.elements');
 const element = document.querySelector('.element').content;
 const profileAddButton = document.querySelector('.profile__add-button');
-const elementImg = document.querySelectorAll('.element__img');
-const elementName = document.querySelector('.element__name');
 const foto = document.querySelector('.foto');
 const fotoCloseButton = document.querySelector('.foto__close');
 const fotoNickName = document.querySelector('.foto__about_name');
@@ -59,7 +57,6 @@ const popupFotoElement = document.querySelector('.popup-foto__element');
 function popupToggle () {
     popup.classList.toggle('popup_is-open');
 };
-
 
 function newName (event) {
     event.preventDefault();
@@ -102,8 +99,8 @@ function newNameFoto (event) {
 
 profileAddButton.addEventListener('click', newNameFoto);
 fotoCloseButton.addEventListener('click', fotoToggle);
-fotoInput.addEventListener('submit', newNameFoto);
-fotoSubmit.addEventListener('click',  fotoNew);
+fotoInput.addEventListener('submit', fotoNew);
+fotoSubmit.addEventListener('click', fotoToggle);
 
 
 function popupFotoToggle () {
@@ -114,57 +111,48 @@ function popupFotoToggle () {
 popupFotoClose.addEventListener('click', popupFotoToggle);
 
 
-function render() {
-    elements.innerHTML = "";
-    initialCards.forEach(renderElement);
-}
-
-
-function renderElement(card, index) {
+function renderElement(card) {
     const htmlElement = element.cloneNode(true);
-    htmlElement.querySelector('.element__name').innerText = card.name;
-    htmlElement.querySelector('.element__img').src = card.link;
-    htmlElement.querySelector('.element__img').alt = card.name;
-    htmlElement.querySelector('.element__card').setAttribute("id", index);
+    const elementImg = htmlElement.querySelector('.element__img');
+    const elementName = htmlElement.querySelector('.element__name');
+    const elememtBasket = htmlElement.querySelector('.elememt__basket');
+
+    elementName.innerText = card.name;
+    elementImg.src = card.link;
+    elementImg.alt = card.name;
+    
+
     htmlElement.querySelector('.element__like').addEventListener('click', function(event) {
         event.target.classList.toggle('element__like_active');
-    })    
-    htmlElement.querySelectorAll('.elememt__basket').forEach((button) => {
-        button.addEventListener('click', fotoDelete);
-    });
+        event.stopPropagation('.popup-foto_is-open');
+    });    
+    
+    elememtBasket.addEventListener('click', function(event) {        
+        const elementDelete = elememtBasket.closest('.element__card');
+        elementDelete.remove(event.target);
+        event.stopPropagation('.popup-foto_is-open');
+    }); 
 
-function bigFotoPopup() {
-    popupFotoBig.src = card.link;
-    popupFotoEdit.innerText = card.name;
-    popupFotoBig.value = card.name;
-    elements.addEventListener('click', popupFotoToggle);    
-    };
+    htmlElement.querySelectorAll('.element__img').forEach((button) => {
+        button.addEventListener('click', () => {
+            popupFotoBig.src = card.link;
+            popupFotoEdit.innerText = card.name;
+            popupFotoBig.value = card.name;           
+        });
+    })  
 
-    htmlElement.querySelectorAll('.element__img').forEach((event) => {
-        event.addEventListener('click', bigFotoPopup);
-    })
-
+    elements.addEventListener('click', popupFotoToggle);
     elements.appendChild(htmlElement);
 }
 
 
-function fotoDelete(event) {
-    const index = getIdFromEvent(event);
-    initialCards.splice(index, 1);
-
-    render();
-}
-
 function fotoNew(event) {
-    const index = getIdFromEvent(event);
+    event.preventDefault();
+
     initialCards.splice(0, 0, {name: fotoNickName.value, link: fotoOccupation.value});
-
-    render();
+    elements.innerHTML = "";
+    initialCards.forEach(renderElement);
 }
 
-
-function getIdFromEvent(event) {
-	return event.target.parentNode.getAttribute("id");
-}
-
-render();
+elements.innerHTML = "";
+initialCards.forEach(renderElement);
