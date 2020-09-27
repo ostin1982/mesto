@@ -54,11 +54,11 @@ const popupFotoElement = document.querySelector('.popup-foto__element');
 
 
 
-function popupToggle () {
+function popupToggle() {
     popup.classList.toggle('popup_is-open');
 };
 
-function newName (event) {
+function newName(event) {
     event.preventDefault();
 
     nickName.textContent = popupNickName.value;
@@ -74,19 +74,34 @@ function about() {
 
     popupToggle();
 }
+/** 6 спринт
+document.addEventListener('keydown', function (event) {
+    if(event.keyCode == 27) {
+        popup.classList.remove('popup_is-open');
+        }
+    })
 
+function popupCloseByClickOnOverlay(event) {
+    if (event.target !== event.currentTarget) {
+        return
+    }
+
+    popupToggle(event)
+}
+*/
 
 popupOpenButton.addEventListener('click', about);
 popupCloseButton.addEventListener('click', popupToggle);
 popupInput.addEventListener('submit', newName);
+//popup.addEventListener('click', popupCloseByClickOnOverlay);
 
 
-function fotoToggle () {
+function fotoToggle() {
     foto.classList.toggle('foto_is-open');
 };
 
 
-function newNameFoto (event) {
+function newNameFoto(event) {
     event.preventDefault();
     
     fotoNickName.value = "Название";
@@ -95,20 +110,49 @@ function newNameFoto (event) {
     fotoToggle();
 };
 
+/** 6 спринт
+    document.addEventListener('keydown', function (event) {
+    if(event.keyCode == 27) {
+        foto.classList.remove('foto_is-open');
+        }
+    })
 
 
+function fotoCloseByClickOnOverlay(event) {
+    if (event.target !== event.currentTarget) {
+        return
+    }
+
+    fotoToggle(event);
+}    
+*/
 profileAddButton.addEventListener('click', newNameFoto);
 fotoCloseButton.addEventListener('click', fotoToggle);
 fotoInput.addEventListener('submit', fotoNew);
 fotoSubmit.addEventListener('click', fotoToggle);
+//foto.addEventListener('click', fotoCloseByClickOnOverlay);
 
 
 function popupFotoToggle () {
     popupFoto.classList.toggle('popup-foto_is-open');
 };
 
+/** 6 спринт
+document.addEventListener('keydown', function (event) {
+    if(event.keyCode == 27) {
+        popupFoto.classList.remove('popup-foto_is-open');
+        }
+    })
 
+function popupFotoCloseByClickOnOverlay(event) {
+    if (event.target !== event.currentTarget) {
+        return
+    }
+    popupFotoToggle(event);
+    }    
+*/
 popupFotoClose.addEventListener('click', popupFotoToggle);
+//popupFoto.addEventListener('click', popupFotoCloseByClickOnOverlay);
 
 
 function renderElement(card) {
@@ -124,35 +168,36 @@ function renderElement(card) {
 
     htmlElement.querySelector('.element__like').addEventListener('click', function(event) {
         event.target.classList.toggle('element__like_active');
-        event.stopPropagation('.popup-foto_is-open');
+        /** 
+         * event.stopPropagation('.popup-foto_is-open');
+         *   */     
     });    
     
     elememtBasket.addEventListener('click', function(event) {        
         const elementDelete = elememtBasket.closest('.element__card');
         elementDelete.remove(event.target);
-        event.stopPropagation('.popup-foto_is-open');
+        /**
+         * event.stopPropagation('.popup-foto_is-open');
+         *   */
     }); 
 
-    htmlElement.querySelectorAll('.element__img').forEach((button) => {
-        button.addEventListener('click', () => {
-            popupFotoBig.src = card.link;
-            popupFotoEdit.innerText = card.name;
-            popupFotoBig.value = card.name;           
-        });
-    })  
+    elementImg.addEventListener('click', () => {
+        popupFotoBig.src = card.link;
+        popupFotoEdit.innerText = card.name;
+        popupFotoBig.value = card.name; 
+        //Меня смущает, что срабатывает только до момента, пока не кликнул по карточке, после и 'лайк' и 'удалить' открывают popup с фото. event.stopPropagation показалась лучшей идеей.
+        elements.addEventListener('click', popupFotoToggle);      
+    });
 
-    elements.addEventListener('click', popupFotoToggle);
-    elements.appendChild(htmlElement);
+elements.appendChild(htmlElement);
 }
-
 
 function fotoNew(event) {
     event.preventDefault();
 
-    initialCards.splice(0, 0, {name: fotoNickName.value, link: fotoOccupation.value});
-    elements.innerHTML = "";
-    initialCards.forEach(renderElement);
+    initialCards.prepend(renderElement({name: fotoNickName.value, link: fotoOccupation.value}));
 }
+
 
 elements.innerHTML = "";
 initialCards.forEach(renderElement);
