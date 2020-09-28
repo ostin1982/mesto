@@ -33,23 +33,25 @@
         <section class="popup">
             <div class="popup__container">
                 <h2 class="popup__edit">Редактировать профиль</h2>
-                <form class="popup__input" name="input">
-                    <input class="popup__about popup__about_name" type="text" placeholder="" value="" name="name">
-                    <input class="popup__about popup__about_occupation" type="text" placeholder="" value="" name="occupation">
+                <form class="popup__input " name="input" novalidate>
+                    <input class="popup__about popup__about_name " type="text" placeholder="" value="" name="name" required>
+                    <input class="popup__about popup__about_occupation f" type="text" placeholder="" value="" name="occupation" required>
                     <button type="submit" class="popup__submit">Сохранить</button>
                 </form>                    
-                <button class="popup__close"></button>                
+                <button class="popup__close"></button> 
+                <span class="popup__input-error" id="sign-in-name-error"></span>               
             </div>
         </section>
         <section class="foto">
             <div class="foto__container">
                 <h2 class="foto__edit">Новое место</h2>
-                <form class="foto__input" name="input">
-                    <input class="foto__about foto__about_name" type="text" placeholder="Название" value="" name="name">
-                    <input class="foto__about foto__about_occupation" type="text" placeholder="Ссылка на картинку" value="" name="occupation">
+                <form class="foto__input" name="input" novalidate>
+                    <input class="foto__about foto__about_name" type="text" placeholder="Название" value="" name="name" required>
+                    <input class="foto__about foto__about_occupation" type="text" placeholder="Ссылка на картинку" value="" name="occupation" required>
                     <button type="submit" class="foto__submit">Создать</button>
                 </form>                    
-                <button class="foto__close"></button>                
+                <button class="foto__close"></button> 
+                <span class="foto__input-error" id="sign-in-foto-error"></span>               
             </div>
         </section>
         <section class="popup-foto">
@@ -61,7 +63,7 @@
         </section>
         <template class="element">
             <article class="element__card">
-                <img src=""  class="element__img">
+                <img src="" alt="" class="element__img">
                 <button class="elememt__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name"></h2>

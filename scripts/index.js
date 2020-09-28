@@ -155,6 +155,9 @@ popupFotoClose.addEventListener('click', popupFotoToggle);
 //popupFoto.addEventListener('click', popupFotoCloseByClickOnOverlay);
 
 
+
+
+
 function renderElement(card) {
     const htmlElement = element.cloneNode(true);
     const elementImg = htmlElement.querySelector('.element__img');
@@ -167,26 +170,20 @@ function renderElement(card) {
     
 
     htmlElement.querySelector('.element__like').addEventListener('click', function(event) {
-        event.target.classList.toggle('element__like_active');
-        /** 
-         * event.stopPropagation('.popup-foto_is-open');
-         *   */     
+        event.target.classList.toggle('element__like_active');   
     });    
     
     elememtBasket.addEventListener('click', function(event) {        
         const elementDelete = elememtBasket.closest('.element__card');
         elementDelete.remove(event.target);
-        /**
-         * event.stopPropagation('.popup-foto_is-open');
-         *   */
     }); 
 
     elementImg.addEventListener('click', () => {
         popupFotoBig.src = card.link;
         popupFotoEdit.innerText = card.name;
         popupFotoBig.value = card.name; 
-        //Меня смущает, что срабатывает только до момента, пока не кликнул по карточке, после и 'лайк' и 'удалить' открывают popup с фото. event.stopPropagation показалась лучшей идеей.
-        elements.addEventListener('click', popupFotoToggle);      
+    
+        popupFotoToggle();      
     });
 
 elements.appendChild(htmlElement);
@@ -194,7 +191,6 @@ elements.appendChild(htmlElement);
 
 function fotoNew(event) {
     event.preventDefault();
-
     initialCards.prepend(renderElement({name: fotoNickName.value, link: fotoOccupation.value}));
 }
 
