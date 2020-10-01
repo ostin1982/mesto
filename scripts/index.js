@@ -35,6 +35,7 @@ const popupOccupation = popup.querySelector('.popup__about_occupation');
 const popupInput = popup.querySelector('.popup__input');
 const popupSubmit = popup.querySelector('.popup__submit');
 const popupEdit = popup.querySelector('.popup__edit');
+const popupAbout = document.querySelectorAll('.popup__about');
 const elements = document.querySelector('.elements');
 const element = document.querySelector('.element').content;
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -45,6 +46,7 @@ const fotoOccupation = document.querySelector('.foto__about_occupation');
 const fotoInput = document.querySelector('.foto__input');
 const fotoSubmit = document.querySelector('.foto__submit');
 const fotoEdit = document.querySelector('.foto__edit');
+const fotoAbout = document.querySelectorAll('.foto__about');
 const popupFoto = document.querySelector('.popup-foto');
 const popupFotoBig = document.querySelector('.popup-foto__big');
 const popupFotoEdit = document.querySelector('.popup-foto__edit');
@@ -74,7 +76,8 @@ function about() {
 
     popupToggle();
 }
-/** 6 спринт
+
+// 6 спринт. Закрытие popup по Esc и мимимо popup
 document.addEventListener('keydown', function (event) {
     if(event.keyCode == 27) {
         popup.classList.remove('popup_is-open');
@@ -88,12 +91,12 @@ function popupCloseByClickOnOverlay(event) {
 
     popupToggle(event)
 }
-*/
+
 
 popupOpenButton.addEventListener('click', about);
 popupCloseButton.addEventListener('click', popupToggle);
 popupInput.addEventListener('submit', newName);
-//popup.addEventListener('click', popupCloseByClickOnOverlay);
+popup.addEventListener('click', popupCloseByClickOnOverlay);
 
 
 function fotoToggle() {
@@ -110,7 +113,7 @@ function newNameFoto(event) {
     fotoToggle();
 };
 
-/** 6 спринт
+// 6 спринт. Закрытие foto по Esc и мимимо popup
     document.addEventListener('keydown', function (event) {
     if(event.keyCode == 27) {
         foto.classList.remove('foto_is-open');
@@ -125,19 +128,19 @@ function fotoCloseByClickOnOverlay(event) {
 
     fotoToggle(event);
 }    
-*/
+
 profileAddButton.addEventListener('click', newNameFoto);
 fotoCloseButton.addEventListener('click', fotoToggle);
 fotoInput.addEventListener('submit', fotoNew);
 fotoSubmit.addEventListener('click', fotoToggle);
-//foto.addEventListener('click', fotoCloseByClickOnOverlay);
+foto.addEventListener('click', fotoCloseByClickOnOverlay);
 
 
 function popupFotoToggle () {
     popupFoto.classList.toggle('popup-foto_is-open');
 };
 
-/** 6 спринт
+// 6 спринт. Закрытие popup-foto по Esc и мимимо popup
 document.addEventListener('keydown', function (event) {
     if(event.keyCode == 27) {
         popupFoto.classList.remove('popup-foto_is-open');
@@ -149,13 +152,11 @@ function popupFotoCloseByClickOnOverlay(event) {
         return
     }
     popupFotoToggle(event);
-    }    
-*/
+    }
+
+
 popupFotoClose.addEventListener('click', popupFotoToggle);
-//popupFoto.addEventListener('click', popupFotoCloseByClickOnOverlay);
-
-
-
+popupFoto.addEventListener('click', popupFotoCloseByClickOnOverlay);
 
 
 function renderElement(card) {

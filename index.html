@@ -34,24 +34,34 @@
             <div class="popup__container">
                 <h2 class="popup__edit">Редактировать профиль</h2>
                 <form class="popup__input " name="input" novalidate>
-                    <input class="popup__about popup__about_name " type="text" placeholder="" value="" name="name" required>
-                    <input class="popup__about popup__about_occupation f" type="text" placeholder="" value="" name="occupation" required>
-                    <button type="submit" class="popup__submit">Сохранить</button>
+                    <label for="sign-in-name" class="popup__span">
+                        <input class="popup__about popup__about_name" id="sign-in-name" type="text" placeholder="Имя" value="" name="name" required minlength="2" maxlength="40" autocomplete="off">                 
+                        <span class="popup__about-error" id="sign-in-name-error"></span>
+                    </label>
+                    <label for="sign-in-occupation" class="popup__span">
+                        <input class="popup__about popup__about_occupation" id="sign-in-occupation" type="text" placeholder="О себе" value="" name="occupation" required minlength="2" maxlength="200" autocomplete="off">
+                        <span class="popup__about-error" id="sign-in-occupation-error"></span>
+                    </label>
+                    <button type="submit" class="popup__submit">Сохранить</button>                    
                 </form>                    
-                <button class="popup__close"></button> 
-                <span class="popup__input-error" id="sign-in-name-error"></span>               
+                <button class="popup__close"></button>                                
             </div>
         </section>
         <section class="foto">
             <div class="foto__container">
                 <h2 class="foto__edit">Новое место</h2>
                 <form class="foto__input" name="input" novalidate>
-                    <input class="foto__about foto__about_name" type="text" placeholder="Название" value="" name="name" required>
-                    <input class="foto__about foto__about_occupation" type="text" placeholder="Ссылка на картинку" value="" name="occupation" required>
+                    <label for="sign-in-foto" class="foto__span">
+                        <input class="foto__about foto__about_name" id="sign-in-foto-name" type="text" placeholder="Название" value="" name="name" required minlength="2" maxlength="30" autocomplete="off">
+                        <span class="foto__about-error" id="sign-in-foto-name-error"></span>  
+                    </label>
+                    <label for="sign-in-foto-occupation" class="popup__span">
+                        <input class="foto__about foto__about_occupation" id="sign-in-foto-occupation" type="url" placeholder="Ссылка на картинку" value="" name="occupation" required autocomplete="off">
+                        <span class="foto__about-error" id="sign-in-foto-occupation-error"></span>
+                    </label>
                     <button type="submit" class="foto__submit">Создать</button>
                 </form>                    
-                <button class="foto__close"></button> 
-                <span class="foto__input-error" id="sign-in-foto-error"></span>               
+                <button class="foto__close"></button>
             </div>
         </section>
         <section class="popup-foto">
@@ -73,5 +83,6 @@
         </template>
     </div> 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
 </body>
 </html>
