@@ -1,4 +1,4 @@
-.elememt__basket {
+.element__basket {
     position: absolute;
     padding: 0;
     margin: 0;
@@ -14,7 +14,7 @@
     right: 15px; 
 }
     
-.elememt__basket:hover {
+.element__basket:hover {
     opacity: 0.6;
     cursor: pointer;
     transition: all 0.5s ease-out;

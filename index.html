@@ -28,53 +28,53 @@
             </section>
         </main>
         <footer class="footer">
-            <p class="footer__copiright">&copy; 2020 Mesto Russia</p>
+            <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <section class="popup">
+        <section class="popup popup_name">
             <div class="popup__container">
                 <h2 class="popup__edit">Редактировать профиль</h2>
-                <form class="popup__input " name="input" novalidate>
+                <form class="popup__input popup__input_name" name="input" novalidate>
                     <label for="sign-in-name" class="popup__span">
                         <input class="popup__about popup__about_name" id="sign-in-name" type="text" placeholder="Имя" value="" name="name" required minlength="2" maxlength="40" autocomplete="off">                 
                         <span class="popup__about-error" id="sign-in-name-error"></span>
                     </label>
                     <label for="sign-in-occupation" class="popup__span">
-                        <input class="popup__about popup__about_occupation" id="sign-in-occupation" type="text" placeholder="О себе" value="" name="occupation" required minlength="2" maxlength="200" autocomplete="off">
+                        <input class="popup__about popup__about_occupation_name" id="sign-in-occupation" type="text" placeholder="О себе" value="" name="occupation" required minlength="2" maxlength="200" autocomplete="off">
                         <span class="popup__about-error" id="sign-in-occupation-error"></span>
                     </label>
-                    <button type="submit" class="popup__submit">Сохранить</button>                    
+                    <button type="submit" class="popup__submit popup__submit_name">Сохранить</button>                    
                 </form>                    
                 <button class="popup__close"></button>                                
             </div>
         </section>
-        <section class="foto">
-            <div class="foto__container">
-                <h2 class="foto__edit">Новое место</h2>
-                <form class="foto__input" name="input" novalidate>
-                    <label for="sign-in-foto" class="foto__span">
-                        <input class="foto__about foto__about_name" id="sign-in-foto-name" type="text" placeholder="Название" value="" name="name" required minlength="2" maxlength="30" autocomplete="off">
-                        <span class="foto__about-error" id="sign-in-foto-name-error"></span>  
+        <section class="popup popup_photo-card">
+            <div class="popup__container">
+                <h2 class="popup__edit">Новое место</h2>
+                <form class="popup__input popup__input_photo-card" name="input" novalidate>
+                    <label for="sign-in-photo-card" class="popup__span">
+                        <input class="popup__about popup__about_photo-card" id="sign-in-photo-card-name" type="text" placeholder="Название" value="" name="name" required minlength="2" maxlength="30" autocomplete="off">
+                        <span class="popup__about-error" id="sign-in-photo-card-name-error"></span>  
                     </label>
-                    <label for="sign-in-foto-occupation" class="popup__span">
-                        <input class="foto__about foto__about_occupation" id="sign-in-foto-occupation" type="url" placeholder="Ссылка на картинку" value="" name="occupation" required autocomplete="off">
-                        <span class="foto__about-error" id="sign-in-foto-occupation-error"></span>
+                    <label for="sign-in-photo-card-occupation" class="popup__span">
+                        <input class="popup__about popup__about_occupation_photo-card" id="sign-in-photo-card-occupation" type="url" placeholder="Ссылка на картинку" value="" name="occupation" required autocomplete="off">
+                        <span class="popup__about-error" id="sign-in-photo-card-occupation-error"></span>
                     </label>
-                    <button type="submit" class="foto__submit">Создать</button>
+                    <button type="submit" class="popup__submit popup__submit_photo-card">Создать</button>
                 </form>                    
-                <button class="foto__close"></button>
+                <button class="popup__close"></button>
             </div>
         </section>
-        <section class="popup-foto">
-            <div class="popup-foto__element">
-                <img src="" alt="" class="popup-foto__big">                               
-                <button class="popup-foto__close"></button>
-                <p class="popup-foto__edit"></p>
+        <section class="popup popup__photo-big-card">
+            <div class="popup__photo-element">
+                <img src="" alt="" class="popup__photo-big">                               
+                <button class="popup__close popup__photo-close"></button>
+                <p class="popup__photo-edit"></p>
             </div>           
         </section>
         <template class="element">
             <article class="element__card">
                 <img src="" alt="" class="element__img">
-                <button class="elememt__basket" type="button"></button>
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name"></h2>
                     <button class="element__like" type="button"></button>

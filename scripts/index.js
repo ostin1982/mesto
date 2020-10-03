@@ -25,176 +25,164 @@ const initialCards = [
     }
 ];
 
-const popup = document.querySelector('.popup');
+
+
+// найдем все popup
+const popupAll = Array.from(document.querySelectorAll('.popup'));
+
+
+
+// popup Имя-Род занятий (popup_name)
+const popupName = document.querySelector('.popup_name');
+const popupCloseName = popupName.querySelector('.popup__close');
+const popupInputName = popupName.querySelector('.popup__input_name');
+const popupAboutName = popupName.querySelector('.popup__about_name');
+const popupAboutOccupationName = popupName.querySelector('.popup__about_occupation_name');
+
+
+// popup для ввода фотокарточек (popup_photo-card)
+const popupPhotoCard = document.querySelector('.popup_photo-card');
+const popupClosePhotoCard = popupPhotoCard.querySelector('.popup__close');
+const popupInputPhotoCard = popupPhotoCard.querySelector('.popup__input_photo-card');
+const popupAboutPhotoCard = popupPhotoCard.querySelector('.popup__about_photo-card');
+const popupAboutOccupationPhotoCard = popupPhotoCard.querySelector('.popup__about_occupation_photo-card');
+const popupSubmitPhotoCard = popupPhotoCard.querySelector('.popup__submit_photo-card');
+
+
+
+// popup с фотографией
+const popupPhoto = document.querySelector('.popup__photo-big-card');
+const popupPhotoBig = popupPhoto.querySelector('.popup__photo-big');
+const popupPhotoEdit = popupPhoto.querySelector('.popup__photo-edit');
+const popupPhotoClose = popupPhoto.querySelector('.popup__close');
+const popupPhotoElement = popupPhoto.querySelector('.popup__photo-element');
+
+
+
+// Профайл
 const popupOpenButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = popup.querySelector('.popup__close');
 const nickName = document.querySelector('.profile__name');
 const occupation = document.querySelector('.profile__occupation');
-const popupNickName = popup.querySelector('.popup__about_name');
-const popupOccupation = popup.querySelector('.popup__about_occupation');
-const popupInput = popup.querySelector('.popup__input');
-const popupSubmit = popup.querySelector('.popup__submit');
-const popupEdit = popup.querySelector('.popup__edit');
-const popupAbout = document.querySelectorAll('.popup__about');
+const profileAddButton = document.querySelector('.profile__add-button');
+
+
+
+// Элемент
 const elements = document.querySelector('.elements');
 const element = document.querySelector('.element').content;
-const profileAddButton = document.querySelector('.profile__add-button');
-const foto = document.querySelector('.foto');
-const fotoCloseButton = document.querySelector('.foto__close');
-const fotoNickName = document.querySelector('.foto__about_name');
-const fotoOccupation = document.querySelector('.foto__about_occupation');
-const fotoInput = document.querySelector('.foto__input');
-const fotoSubmit = document.querySelector('.foto__submit');
-const fotoEdit = document.querySelector('.foto__edit');
-const fotoAbout = document.querySelectorAll('.foto__about');
-const popupFoto = document.querySelector('.popup-foto');
-const popupFotoBig = document.querySelector('.popup-foto__big');
-const popupFotoEdit = document.querySelector('.popup-foto__edit');
-const popupFotoClose = document.querySelector('.popup-foto__close');
-const popupFotoElement = document.querySelector('.popup-foto__element');
 
 
 
 
-function popupToggle() {
+// открытие-закрытие popup
+function popupToggle(popup) {
     popup.classList.toggle('popup_is-open');
 };
 
-function newName(event) {
+
+// добавление, сохранение и перенос имени в popup_name
+function redactName(event) {
     event.preventDefault();
 
-    nickName.textContent = popupNickName.value;
-    occupation.textContent = popupOccupation.value;
+    nickName.textContent = popupAboutName.value;
+    occupation.textContent = popupAboutOccupationName.value;
 
-    popupToggle();
-};
-
-
-function about() {
-    popupNickName.value = nickName.textContent;
-    popupOccupation.value = occupation.textContent;
-
-    popupToggle();
+    popupToggle(popupName);
 }
 
-// 6 спринт. Закрытие popup по Esc и мимимо popup
-document.addEventListener('keydown', function (event) {
-    if(event.keyCode == 27) {
-        popup.classList.remove('popup_is-open');
-        }
-    })
-
-function popupCloseByClickOnOverlay(event) {
-    if (event.target !== event.currentTarget) {
-        return
-    }
-
-    popupToggle(event)
-}
-
-
-popupOpenButton.addEventListener('click', about);
-popupCloseButton.addEventListener('click', popupToggle);
-popupInput.addEventListener('submit', newName);
-popup.addEventListener('click', popupCloseByClickOnOverlay);
-
-
-function fotoToggle() {
-    foto.classList.toggle('foto_is-open');
-};
-
-
-function newNameFoto(event) {
-    event.preventDefault();
+popupOpenButton.addEventListener('click', () => {
+    popupAboutName.value = nickName.textContent;
+    popupAboutOccupationName.value = occupation.textContent;
     
-    fotoNickName.value = "Название";
-    fotoOccupation.value = "Ссылка на картинку";
+    popupToggle(popupName);
+})
 
-    fotoToggle();
-};
 
-// 6 спринт. Закрытие foto по Esc и мимимо popup
-    document.addEventListener('keydown', function (event) {
-    if(event.keyCode == 27) {
-        foto.classList.remove('foto_is-open');
+// открытие popup_photo-card
+profileAddButton.addEventListener('click', () => {
+    popupAboutPhotoCard.value = "Название";
+    popupAboutOccupationPhotoCard.value = "Ссылка на картинку";
+
+    popupToggle(popupPhotoCard);
+})
+
+
+
+// закрытие по ESC
+function popupCloseByEsc(event) {
+    const popupOpen = document.querySelector('.popup_is-open')
+    if (event.key === 'Escape') {
+        popupToggle(popupOpen);
+    }
+}
+
+
+// закрытие по крестику и мимо popup
+popupAll.forEach((popup) => {
+    const popupClose = popup.querySelector('.popup__close')
+    popup.addEventListener('click', (evt) => {
+        if ((evt.target !== evt.currentTarget) && (evt.target !== popupClose)) {
+            return
         }
+        popupToggle(popup)
     })
+})
 
 
-function fotoCloseByClickOnOverlay(event) {
-    if (event.target !== event.currentTarget) {
-        return
-    }
-
-    fotoToggle(event);
-}    
-
-profileAddButton.addEventListener('click', newNameFoto);
-fotoCloseButton.addEventListener('click', fotoToggle);
-fotoInput.addEventListener('submit', fotoNew);
-fotoSubmit.addEventListener('click', fotoToggle);
-foto.addEventListener('click', fotoCloseByClickOnOverlay);
+// Обработчики событий
+popupSubmitPhotoCard.addEventListener('click', () => {
+    popupToggle(popupPhotoCard);
+})
 
 
-function popupFotoToggle () {
-    popupFoto.classList.toggle('popup-foto_is-open');
-};
-
-// 6 спринт. Закрытие popup-foto по Esc и мимимо popup
-document.addEventListener('keydown', function (event) {
-    if(event.keyCode == 27) {
-        popupFoto.classList.remove('popup-foto_is-open');
-        }
-    })
-
-function popupFotoCloseByClickOnOverlay(event) {
-    if (event.target !== event.currentTarget) {
-        return
-    }
-    popupFotoToggle(event);
-    }
+popupName.addEventListener('submit', redactName);
+popupInputPhotoCard.addEventListener('submit', fotoNew);
+popupClosePhotoCard.addEventListener('click', popupToggle);
+document.addEventListener('keydown', popupCloseByEsc);
 
 
-popupFotoClose.addEventListener('click', popupFotoToggle);
-popupFoto.addEventListener('click', popupFotoCloseByClickOnOverlay);
 
 
+// создание карточки
 function renderElement(card) {
     const htmlElement = element.cloneNode(true);
     const elementImg = htmlElement.querySelector('.element__img');
     const elementName = htmlElement.querySelector('.element__name');
-    const elememtBasket = htmlElement.querySelector('.elememt__basket');
+    const elememtBasket = htmlElement.querySelector('.element__basket');
 
     elementName.innerText = card.name;
     elementImg.src = card.link;
     elementImg.alt = card.name;
     
 
+    // Лайк карточки
     htmlElement.querySelector('.element__like').addEventListener('click', function(event) {
         event.target.classList.toggle('element__like_active');   
     });    
     
+    // удаление элемента
     elememtBasket.addEventListener('click', function(event) {        
         const elementDelete = elememtBasket.closest('.element__card');
         elementDelete.remove(event.target);
     }); 
-
-    elementImg.addEventListener('click', () => {
-        popupFotoBig.src = card.link;
-        popupFotoEdit.innerText = card.name;
-        popupFotoBig.value = card.name; 
     
-        popupFotoToggle();      
+
+    // добавление новой карточки
+    elementImg.addEventListener('click', () => {
+        popupPhotoBig.src = card.link;
+        popupPhotoEdit.innerText = card.name;
+        popupPhotoBig.value = card.name; 
+    
+        popupToggle(popupPhoto);      
     });
 
-elements.appendChild(htmlElement);
+elements.prepend(htmlElement);
 }
 
 function fotoNew(event) {
     event.preventDefault();
-    initialCards.prepend(renderElement({name: fotoNickName.value, link: fotoOccupation.value}));
+    initialCards.prepend(renderElement({name: popupAboutPhotoCard.value, link: popupAboutOccupationPhotoCard.value}));
 }
 
 
-elements.innerHTML = "";
 initialCards.forEach(renderElement);
