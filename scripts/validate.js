@@ -1,3 +1,5 @@
+// заработало только через const, без нее выдавало ошибку
+
 const enableValidationForm = {
     popupInputForm: '.popup__input',
     popuAboutForm: '.popup__about',

@@ -177,7 +177,7 @@ function renderElement(card) {
         popupToggle(popupPhoto);      
     });
     
-    return htmlElement
+    return htmlElement;
 }
 
 
