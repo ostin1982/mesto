@@ -100,8 +100,8 @@ popupOpenButton.addEventListener('click', () => {
 
 // открытие popup_photo-card
 profileAddButton.addEventListener('click', () => {
-    popupAboutPhotoCard.value = "Название";
-    popupAboutOccupationPhotoCard.value = "Ссылка на картинку";
+    popupAboutPhotoCard.value = "";
+    popupAboutOccupationPhotoCard.value = "";
 
     popupToggle(popupPhotoCard);
 })
@@ -136,7 +136,7 @@ popupSubmitPhotoCard.addEventListener('click', () => {
 
 
 popupName.addEventListener('submit', redactName);
-popupInputPhotoCard.addEventListener('submit', fotoNew);
+popupInputPhotoCard.addEventListener('submit', photoNew);
 popupClosePhotoCard.addEventListener('click', popupToggle);
 document.addEventListener('keydown', popupCloseByEsc);
 
@@ -167,22 +167,35 @@ function renderElement(card) {
     }); 
     
 
-    // добавление новой карточки
+    // большой popup
     elementImg.addEventListener('click', () => {
         popupPhotoBig.src = card.link;
         popupPhotoEdit.innerText = card.name;
         popupPhotoBig.value = card.name; 
+        
     
         popupToggle(popupPhoto);      
     });
-
-elements.prepend(htmlElement);
+    
+    return htmlElement
 }
 
-function fotoNew(event) {
+
+// добавление новой фотографии с подписью
+function photoNew(event){
     event.preventDefault();
-    initialCards.prepend(renderElement({name: popupAboutPhotoCard.value, link: popupAboutOccupationPhotoCard.value}));
+
+    const newElement = renderElement({name: popupAboutPhotoCard.value, link: popupAboutOccupationPhotoCard.value});
+    renderCards(newElement, elements);
+    
+    popupToggle();
 }
 
 
-initialCards.forEach(renderElement);
+function renderCards(newElement, element){
+    element.prepend(newElement);
+}
+
+initialCards.forEach(function (item){
+    elements.appendChild(renderElement(item));
+});
