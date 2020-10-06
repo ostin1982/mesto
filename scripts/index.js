@@ -82,12 +82,14 @@ function popupToggle(popup) {
 
 // открытие карточки
 function popupAdd(popup) {
+    document.addEventListener('keydown', popupCloseByEsc);
     popup.classList.add('popup_is-open');
 }
 
 
 // закрытие карточки 
 function popupRemove(popup) {
+    document.removeEventListener('keydown', popupCloseByEsc);
     popup.classList.remove('popup_is-open');
 }
 
@@ -150,7 +152,6 @@ popupSubmitPhotoCard.addEventListener('click', () => {
 
 popupName.addEventListener('submit', redactName);
 popupInputPhotoCard.addEventListener('submit', photoNew);
-document.addEventListener('keydown', popupCloseByEsc);
 
 
 
