@@ -2,25 +2,28 @@
 
 const enableValidationForm = {
     popupInputForm: '.popup__input',
-    popuAboutForm: '.popup__about',
+    popupAboutForm: '.popup__about',
     popupSubmitForm: '.popup__submit',
     popupSubmitInactiveForm: 'popup__submit_inactive',
-    popupAboutErrorActiveForm: 'popup__about-error_active',
+    popupAboutErrorForm: 'popup__about-error',
+    popupAboutRedLineForm: 'popup__about_red-line',
 };
 
 
 
 const showInputError = (popupInput, popupAbout, errorMessage, enableValidationForm) => {
     const popupError = popupInput.querySelector(`#${popupAbout.id}-error`);
-    popupError.textContent = errorMessage;
-    popupError.classList.add(enableValidationForm.popupAboutErrorActiveForm);
+    popupAbout.classList.add(enableValidationForm.popupAboutRedLineForm);
+    popupError.textContent = errorMessage; 
+    popupError.classList.add(enableValidationForm.popupAboutErrorForm);    
 }
 
 
 const hideInputError = (popupInput, popupAbout, enableValidationForm) => {
-    const popupError = popupInput.querySelector(`#${popupAbout.id}-error`);
+    const popupError = popupInput.querySelector(`#${popupAbout.id}-error`);    
+    popupAbout.classList.remove(enableValidationForm.popupAboutRedLineForm);
+    popupError.classList.remove(enableValidationForm.popupAboutErrorForm);    
     popupError.textContent = "";
-    popupError.classList.remove(enableValidationForm.popupAboutErrorActiveForm);
 }
 
 
@@ -34,7 +37,7 @@ const checkInputValidity = (popupInput, popupAbout, enableValidationForm) => {
 
 
 const setEventListeners = (popupInput, enableValidationForm) => {
-    const inputList = Array.from(popupInput.querySelectorAll(enableValidationForm.popuAboutForm));
+    const inputList = Array.from(popupInput.querySelectorAll(enableValidationForm.popupAboutForm));
     const buttonElement = popupInput.querySelector(enableValidationForm.popupSubmitForm);
     toggleButtonState(inputList, buttonElement, enableValidationForm);
     inputList.forEach((popupAbout) => {

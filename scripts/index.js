@@ -74,10 +74,23 @@ const element = document.querySelector('.element').content;
 
 
 
-// открытие-закрытие popup
+/**  открытие-закрытие popup
 function popupToggle(popup) {
     popup.classList.toggle('popup_is-open');
 };
+*/
+
+// открытие карточки
+function popupAdd(popup) {
+    popup.classList.add('popup_is-open');
+}
+
+
+// закрытие карточки 
+function popupRemove(popup) {
+    popup.classList.remove('popup_is-open');
+}
+
 
 
 // добавление, сохранение и перенос имени в popup_name
@@ -87,14 +100,14 @@ function redactName(event) {
     nickName.textContent = popupAboutName.value;
     occupation.textContent = popupAboutOccupationName.value;
 
-    popupToggle(popupName);
+    popupRemove(popupName);
 }
 
 popupOpenButton.addEventListener('click', () => {
     popupAboutName.value = nickName.textContent;
     popupAboutOccupationName.value = occupation.textContent;
     
-    popupToggle(popupName);
+    popupAdd(popupName);
 })
 
 
@@ -103,7 +116,7 @@ profileAddButton.addEventListener('click', () => {
     popupAboutPhotoCard.value = "";
     popupAboutOccupationPhotoCard.value = "";
 
-    popupToggle(popupPhotoCard);
+    popupAdd(popupPhotoCard);
 })
 
 
@@ -112,7 +125,7 @@ profileAddButton.addEventListener('click', () => {
 function popupCloseByEsc(event) {
     const popupOpen = document.querySelector('.popup_is-open')
     if (event.key === 'Escape') {
-        popupToggle(popupOpen);
+        popupRemove(popupOpen);
     }
 }
 
@@ -120,24 +133,23 @@ function popupCloseByEsc(event) {
 // закрытие по крестику и мимо popup
 popupAll.forEach((popup) => {
     const popupClose = popup.querySelector('.popup__close')
-    popup.addEventListener('click', (evt) => {
-        if ((evt.target !== evt.currentTarget) && (evt.target !== popupClose)) {
+    popup.addEventListener('click', (event) => {
+        if ((event.target !== event.currentTarget) && (event.target !== popupClose)) {
             return
         }
-        popupToggle(popup)
+        popupRemove(popup)
     })
 })
 
 
 // Обработчики событий
 popupSubmitPhotoCard.addEventListener('click', () => {
-    popupToggle(popupPhotoCard);
+    popupRemove(popupPhotoCard);
 })
 
 
 popupName.addEventListener('submit', redactName);
 popupInputPhotoCard.addEventListener('submit', photoNew);
-popupClosePhotoCard.addEventListener('click', popupToggle);
 document.addEventListener('keydown', popupCloseByEsc);
 
 
@@ -148,7 +160,7 @@ function renderElement(card) {
     const htmlElement = element.cloneNode(true);
     const elementImg = htmlElement.querySelector('.element__img');
     const elementName = htmlElement.querySelector('.element__name');
-    const elememtBasket = htmlElement.querySelector('.element__basket');
+    const elementBasket = htmlElement.querySelector('.element__basket');
 
     elementName.innerText = card.name;
     elementImg.src = card.link;
@@ -161,8 +173,8 @@ function renderElement(card) {
     });    
     
     // удаление элемента
-    elememtBasket.addEventListener('click', function(event) {        
-        const elementDelete = elememtBasket.closest('.element__card');
+    elementBasket.addEventListener('click', function(event) {        
+        const elementDelete = elementBasket.closest('.element__card');
         elementDelete.remove(event.target);
     }); 
     
@@ -174,7 +186,7 @@ function renderElement(card) {
         popupPhotoBig.value = card.name; 
         
     
-        popupToggle(popupPhoto);      
+        popupAdd(popupPhoto);      
     });
     
     return htmlElement;
@@ -187,8 +199,6 @@ function photoNew(event){
 
     const newElement = renderElement({name: popupAboutPhotoCard.value, link: popupAboutOccupationPhotoCard.value});
     renderCards(newElement, elements);
-    
-    popupToggle();
 }
 
 
