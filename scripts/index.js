@@ -25,22 +25,6 @@ const initialCards = [
     }
 ];
 
-// Элемент
-const elements = document.querySelector('.elements');
-const element = document.querySelector('.element').content;
-
-
-
-import Card from './сard.js';
-
-
-initialCards.forEach((item) => {
-    const card = new Card(item, element);   
-})
-
-
-
-
 // найдем все popup
 const popupAll = Array.from(document.querySelectorAll('.popup'));
 
@@ -81,6 +65,11 @@ const profileAddButton = document.querySelector('.profile__add-button');
 
 
 
+// Элемент
+const elements = document.querySelector('.elements');
+const element = document.querySelector('.element').content;
+
+
 
 
 
@@ -91,7 +80,7 @@ function popupToggle(popup) {
 };
 */
 
-/**
+
 // открытие карточки
 function popupAdd(popup) {
     document.addEventListener('keydown', popupCloseByEsc);
@@ -163,11 +152,11 @@ popupSubmitPhotoCard.addEventListener('click', () => {
 
 
 popupName.addEventListener('submit', redactName);
-//popupInputPhotoCard.addEventListener('submit', photoNew);
-*/
+popupInputPhotoCard.addEventListener('submit', photoNew);
 
 
-/**
+
+
 // создание карточки
 function renderElement(card) {
     const htmlElement = element.cloneNode(true);
@@ -224,4 +213,3 @@ function renderCards(newElement, element){
 initialCards.forEach(function (item){
     elements.appendChild(renderElement(item));
 });
-*/
