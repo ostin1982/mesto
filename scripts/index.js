@@ -25,10 +25,18 @@ const initialCards = [
     }
 ];
 
+// Элемент
+const elements = document.querySelector('.elements');
+const element = document.querySelector('.element').content;
+
 
 
 import Card from './сard.js';
 
+
+initialCards.forEach((item) => {
+    const card = new Card(item, element);   
+})
 
 
 
@@ -73,9 +81,6 @@ const profileAddButton = document.querySelector('.profile__add-button');
 
 
 
-// Элемент
-const elements = document.querySelector('.elements');
-const element = document.querySelector('.element').content;
 
 
 
