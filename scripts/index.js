@@ -27,6 +27,12 @@ const initialCards = [
 
 
 
+import Card from './сard.js';
+
+
+
+
+
 // найдем все popup
 const popupAll = Array.from(document.querySelectorAll('.popup'));
 
@@ -80,6 +86,7 @@ function popupToggle(popup) {
 };
 */
 
+/**
 // открытие карточки
 function popupAdd(popup) {
     document.addEventListener('keydown', popupCloseByEsc);
@@ -151,11 +158,11 @@ popupSubmitPhotoCard.addEventListener('click', () => {
 
 
 popupName.addEventListener('submit', redactName);
-popupInputPhotoCard.addEventListener('submit', photoNew);
+//popupInputPhotoCard.addEventListener('submit', photoNew);
+*/
 
 
-
-
+/**
 // создание карточки
 function renderElement(card) {
     const htmlElement = element.cloneNode(true);
@@ -194,6 +201,8 @@ function renderElement(card) {
 }
 
 
+
+
 // добавление новой фотографии с подписью
 function photoNew(event){
     event.preventDefault();
@@ -210,3 +219,4 @@ function renderCards(newElement, element){
 initialCards.forEach(function (item){
     elements.appendChild(renderElement(item));
 });
+*/
