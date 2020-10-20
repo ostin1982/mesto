@@ -1,3 +1,6 @@
+import { popupPhoto, popupPhotoBig, popupPhotoEdit, popupAdd } from './index.js';
+
+
 class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
@@ -51,10 +54,14 @@ class Card {
 
     //Сбор карточки
     generateCard() {
-        this._htmlElement = this._getTemplate();        
-        this._htmlElement.querySelector('.element__img').src = this._link;
-        this._htmlElement.querySelector('.element__name').innerText = this._name;
-        this._htmlElement.querySelector('.element__img').alt = this._name;
+        this._htmlElement = this._getTemplate();
+        //Надеюсь правильно понял
+        this._elImg = this._htmlElement.querySelector('.element__img');
+        this._elName = this._htmlElement.querySelector('.element__name');
+
+        this._elImg.src = this._link;
+        this._elName.innerText = this._name;
+        this._elImg.alt = this._name;
 
         this._setEventListeners();
         return this._htmlElement;
@@ -62,4 +69,3 @@ class Card {
 }
 
 export default Card;
-import { popupPhoto, popupPhotoBig, popupPhotoEdit, popupAdd } from './index.js'

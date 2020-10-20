@@ -1,3 +1,9 @@
+import Card from './Сard.js';
+import FormValidator from './FormValidator.js';
+
+
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -67,38 +73,22 @@ const elements = document.querySelector('.elements');
 
 //форма для валидации
 const enableValidationForm = {
-    popupInputForm: '.popup__input_name',
-    popupForm: document.querySelector('.popup__input_name'),
+    popupInputForm: '.popup',
     popupAboutForm: '.popup__about',
     popupSubmitForm: '.popup__submit',
     popupSubmitInactiveForm: 'popup__submit_inactive',
+    popupInputName: '.popup__input_name',
+    popupInputPhotoCard: '.popup__input_photo-card',
     popupAboutErrorForm: 'popup__about-error',
     popupAboutRedLineForm: 'popup__about_red-line',
 };
-
-
-const enableValidationCard = {
-    popupInputForm: '.popup__input_photo-card',
-    popupForm: document.querySelector('.popup__input_photo-card'),
-    popupAboutForm: '.popup__about',
-    popupSubmitForm: '.popup__submit',
-    popupSubmitInactiveForm: 'popup__submit_inactive',
-    popupAboutErrorForm: 'popup__about-error',
-    popupAboutRedLineForm: 'popup__about_red-line',
-};
-
-
-
-import Card from './Сard.js';
-import FormValidator from './FormValidator.js';
-
 
 
 //Подклюаем Валидацию
-const formValidatorNew = new FormValidator(enableValidationForm, enableValidationForm.popupForm);
+const formValidatorNew = new FormValidator(enableValidationForm, enableValidationForm.popupInputName);
 formValidatorNew.enableValidation();
 
-const formValidatorCard = new FormValidator(enableValidationCard, enableValidationCard.popupForm);
+const formValidatorCard = new FormValidator(enableValidationForm, enableValidationForm.popupInputPhotoCard);
 formValidatorCard.enableValidation();
 
 
@@ -125,24 +115,16 @@ function photoNew(event) {
 }
 
 
-
-/**  открытие-закрытие popup
-function popupToggle(popup) {
-    popup.classList.toggle('popup_is-open');
-};
-*/
-
-
 // открытие карточки
 export function popupAdd(popup) {
-    document.addEventListener('keydown', popupCloseByEsc);
+    document.addEventListener('keyup', popupCloseByEsc);
     popup.classList.add('popup_is-open');
 }
 
 
 // закрытие карточки 
 function popupRemove(popup) {
-    document.removeEventListener('keydown', popupCloseByEsc);
+    document.removeEventListener('keyup', popupCloseByEsc);
     popup.classList.remove('popup_is-open');
 }
 
