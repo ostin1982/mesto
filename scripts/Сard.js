@@ -1,22 +1,65 @@
 class Card {
-    constructor(item, selector) {
-        this._name = item.name;
-        this._link = item.link;
-        this._selector = selector;
+    constructor(data, cardSelector) {
+        this._name = data.name;
+        this._link = data.link;
+        this._cardSelector = cardSelector;
     }
 
     _getTemplate() {
-    const htmlElement = document
-        .querySelector(this._Selector)
+        const renderElement = document
+        .querySelector(this._cardSelector)
         .content
-        .querySelector('.element')
-        .querySelector('.element__img')
-        .querySelector('.element__name')
-        .querySelector('.element__basket')
-        .cloneNode(true);      
-        return htmlElement;       
+        .querySelector('.element__card')
+        .cloneNode(true); 
+
+        return renderElement;
     }
 
-};
+    //добавление Like
+    _handleLikeClick(event) {
+        event.target.classList.toggle('element__like_active'); 
+    }
+
+    //Удаление карточки
+    _handleDeleteClick(event) {
+        const elementDelete = this._htmlElement.querySelector('.element__basket').closest('.element__card');
+        elementDelete.remove(event.target);
+    }
+
+    //Увеличение карточки
+    _openBigPhoto() {        
+        popupPhotoBig.src = this._link;
+        popupPhotoBig.alt = this._name;
+        popupPhotoEdit.innerText = this._name;
+        popupAdd(popupPhoto);
+    }
+
+
+    //Обработчик событий
+    _setEventListeners() {
+        this._htmlElement.querySelector('.element__like').addEventListener('click', (event) => {
+            this._handleLikeClick(event) 
+        });
+        this._htmlElement.querySelector('.element__basket').addEventListener('click', (event) => {
+            this._handleDeleteClick(event) 
+        });
+        this._htmlElement.querySelector('.element__img').addEventListener('click', () => {
+            this._openBigPhoto(); 
+        });
+    }
+    
+
+    //Сбор карточки
+    generateCard() {
+        this._htmlElement = this._getTemplate();        
+        this._htmlElement.querySelector('.element__img').src = this._link;
+        this._htmlElement.querySelector('.element__name').innerText = this._name;
+        this._htmlElement.querySelector('.element__img').alt = this._name;
+
+        this._setEventListeners();
+        return this._htmlElement;
+    }
+}
 
 export default Card;
+import { popupPhoto, popupPhotoBig, popupPhotoEdit, popupAdd } from './index.js'

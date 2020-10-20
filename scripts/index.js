@@ -32,15 +32,12 @@ const popupAll = Array.from(document.querySelectorAll('.popup'));
 
 // popup Имя-Род занятий (popup_name)
 const popupName = document.querySelector('.popup_name');
-const popupCloseName = popupName.querySelector('.popup__close');
-const popupInputName = popupName.querySelector('.popup__input_name');
 const popupAboutName = popupName.querySelector('.popup__about_name');
 const popupAboutOccupationName = popupName.querySelector('.popup__about_occupation_name');
 
 
 // popup для ввода фотокарточек (popup_photo-card)
 const popupPhotoCard = document.querySelector('.popup_photo-card');
-const popupClosePhotoCard = popupPhotoCard.querySelector('.popup__close');
 const popupInputPhotoCard = popupPhotoCard.querySelector('.popup__input_photo-card');
 const popupAboutPhotoCard = popupPhotoCard.querySelector('.popup__about_photo-card');
 const popupAboutOccupationPhotoCard = popupPhotoCard.querySelector('.popup__about_occupation_photo-card');
@@ -49,11 +46,9 @@ const popupSubmitPhotoCard = popupPhotoCard.querySelector('.popup__submit_photo-
 
 
 // popup с фотографией
-const popupPhoto = document.querySelector('.popup__photo-big-card');
-const popupPhotoBig = popupPhoto.querySelector('.popup__photo-big');
-const popupPhotoEdit = popupPhoto.querySelector('.popup__photo-edit');
-const popupPhotoClose = popupPhoto.querySelector('.popup__close');
-const popupPhotoElement = popupPhoto.querySelector('.popup__photo-element');
+export const popupPhoto = document.querySelector('.popup__photo-big-card');
+export const popupPhotoBig = popupPhoto.querySelector('.popup__photo-big');
+export const popupPhotoEdit = popupPhoto.querySelector('.popup__photo-edit');
 
 
 
@@ -67,10 +62,67 @@ const profileAddButton = document.querySelector('.profile__add-button');
 
 // Элемент
 const elements = document.querySelector('.elements');
-const element = document.querySelector('.element').content;
 
 
 
+//форма для валидации
+const enableValidationForm = {
+    popupInputForm: '.popup__input_name',
+    popupForm: document.querySelector('.popup__input_name'),
+    popupAboutForm: '.popup__about',
+    popupSubmitForm: '.popup__submit',
+    popupSubmitInactiveForm: 'popup__submit_inactive',
+    popupAboutErrorForm: 'popup__about-error',
+    popupAboutRedLineForm: 'popup__about_red-line',
+};
+
+
+const enableValidationCard = {
+    popupInputForm: '.popup__input_photo-card',
+    popupForm: document.querySelector('.popup__input_photo-card'),
+    popupAboutForm: '.popup__about',
+    popupSubmitForm: '.popup__submit',
+    popupSubmitInactiveForm: 'popup__submit_inactive',
+    popupAboutErrorForm: 'popup__about-error',
+    popupAboutRedLineForm: 'popup__about_red-line',
+};
+
+
+
+import Card from './Сard.js';
+import FormValidator from './FormValidator.js';
+
+
+
+//Подклюаем Валидацию
+const formValidatorNew = new FormValidator(enableValidationForm, enableValidationForm.popupForm);
+formValidatorNew.enableValidation();
+
+const formValidatorCard = new FormValidator(enableValidationCard, enableValidationCard.popupForm);
+formValidatorCard.enableValidation();
+
+
+//Собираем карточку из Card
+initialCards.forEach((item) => {
+    const card = new Card(item, '.element');
+    const cardElement = card.generateCard();
+    elements.append(cardElement);
+})
+
+
+// добавление новой фотографии с подписью
+function renderCards(item) {
+    const card = new Card(item, '.element')
+    elements.prepend(card.generateCard());
+}
+
+function photoNew(event) {
+    event.preventDefault();    
+
+    renderCards({name: popupAboutPhotoCard.value, link: popupAboutOccupationPhotoCard.value});
+    popupPhotoCard.querySelector('.popup__input_photo-card').reset();
+    popupRemove(popupPhotoCard);
+}
 
 
 
@@ -82,7 +134,7 @@ function popupToggle(popup) {
 
 
 // открытие карточки
-function popupAdd(popup) {
+export function popupAdd(popup) {
     document.addEventListener('keydown', popupCloseByEsc);
     popup.classList.add('popup_is-open');
 }
@@ -153,63 +205,3 @@ popupSubmitPhotoCard.addEventListener('click', () => {
 
 popupName.addEventListener('submit', redactName);
 popupInputPhotoCard.addEventListener('submit', photoNew);
-
-
-
-
-// создание карточки
-function renderElement(card) {
-    const htmlElement = element.cloneNode(true);
-    const elementImg = htmlElement.querySelector('.element__img');
-    const elementName = htmlElement.querySelector('.element__name');
-    const elementBasket = htmlElement.querySelector('.element__basket');
-
-    elementName.innerText = card.name;
-    elementImg.src = card.link;
-    elementImg.alt = card.name;
-    
-
-    // Лайк карточки
-    htmlElement.querySelector('.element__like').addEventListener('click', function(event) {
-        event.target.classList.toggle('element__like_active');   
-    });    
-    
-    // удаление элемента
-    elementBasket.addEventListener('click', function(event) {        
-        const elementDelete = elementBasket.closest('.element__card');
-        elementDelete.remove(event.target);
-    }); 
-    
-
-    // большой popup
-    elementImg.addEventListener('click', () => {
-        popupPhotoBig.src = card.link;
-        popupPhotoEdit.innerText = card.name;
-        popupPhotoBig.value = card.name; 
-        
-    
-        popupAdd(popupPhoto);      
-    });
-    
-    return htmlElement;
-}
-
-
-
-
-// добавление новой фотографии с подписью
-function photoNew(event){
-    event.preventDefault();
-
-    const newElement = renderElement({name: popupAboutPhotoCard.value, link: popupAboutOccupationPhotoCard.value});
-    renderCards(newElement, elements);
-}
-
-
-function renderCards(newElement, element){
-    element.prepend(newElement);
-}
-
-initialCards.forEach(function (item){
-    elements.appendChild(renderElement(item));
-});
