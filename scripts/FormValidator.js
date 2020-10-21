@@ -52,7 +52,6 @@ class FormValidator {
     };
 
 
-    //Надеюсь правильно понял
     _disableAdd() {
         this._buttonElement.classList.add(this._popupSubmitInactiveForm);
         this._buttonElement.setAttribute("disabled", "true");
@@ -86,10 +85,11 @@ class FormValidator {
     enableValidation = () => {
         const submitFormHandler = (event) => {
             event.preventDefault();
+            this._disableAdd(); 
+            this._disableRemove();
         };
 
-        this._disableAdd(); 
-        this._disableRemove();
+
         this._popupForm.addEventListener("submit", submitFormHandler);
         this._setEventListeners();
     }
