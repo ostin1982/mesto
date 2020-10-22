@@ -86,7 +86,6 @@ class FormValidator {
         const submitFormHandler = (event) => {
             event.preventDefault();
             this._disableAdd(); 
-            this._disableRemove();
         };
 
 

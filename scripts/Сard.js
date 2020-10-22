@@ -55,7 +55,6 @@ class Card {
     //Сбор карточки
     generateCard() {
         this._htmlElement = this._getTemplate();
-        //Надеюсь правильно понял
         this._elImg = this._htmlElement.querySelector('.element__img');
         this._elName = this._htmlElement.querySelector('.element__name');
 
