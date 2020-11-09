@@ -67,7 +67,7 @@ export const elementConfig = {
 
 
 //Открытие карточки
-const popupWithImage = new PopupWithImage('.popup__photo-element');
+const popupWithImage = new PopupWithImage('.popup__photo-big-card');
 popupWithImage.setEventListeners();
 
 
