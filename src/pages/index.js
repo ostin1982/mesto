@@ -1,11 +1,11 @@
 import './index.css';
 
-import Card from './script/Сard.js';
-import FormValidator from './script/FormValidator.js';
-import Section from './script/Section.js';
-import PopupWithImage from './script/PopupWithImage.js';
-import PopupWithForm from './script/PopupWithForm.js';
-import UserInfo from './script/UserInfo.js';
+import Card from '../script/Сard.js';
+import FormValidator from '../script/FormValidator.js';
+import Section from '../script/Section.js';
+import PopupWithImage from '../script/PopupWithImage.js';
+import PopupWithForm from '../script/PopupWithForm.js';
+import UserInfo from '../script/UserInfo.js';
 
 
 
@@ -67,7 +67,7 @@ export const elementConfig = {
 
 
 //Открытие карточки
-const popupWithImage = new PopupWithImage('.popup__photo-element');
+const popupWithImage = new PopupWithImage('.popup__photo-big-card');
 popupWithImage.setEventListeners();
 
 
