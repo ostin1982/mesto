@@ -23,8 +23,7 @@ class Card {
 
     //Удаление карточки
     _handleDeleteClick() {
-        const elementDelete = this._htmlElement.querySelector('.element__basket').closest('.element__card');
-        elementDelete.remove();
+        this._htmlElement.querySelector('.element__basket').closest('.element__card').remove();
     }
 
 

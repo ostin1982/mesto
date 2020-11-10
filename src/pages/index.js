@@ -53,18 +53,6 @@ const enableValidationForm = {
     popupAboutRedLineForm: 'popup__about_red-line',
 };
 
-export const elementConfig = {
-    element: document.querySelector('.element'),
-    elements: document.querySelector('.elements'),
-    popupPhotoBig: document.querySelector('.popup__photo-big'),
-    popupPhotoEdit: document.querySelector('.popup__photo-edit'),
-    elementImg: '.element__img',
-    elementName: '.element__name',
-    elementBasket: '.element__basket',
-    elementLike: '.element__like',
-    elementLikeActive: '.element__like_active'
-}
-
 
 //Открытие карточки
 const popupWithImage = new PopupWithImage('.popup__photo-big-card');
