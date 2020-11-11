@@ -38,7 +38,13 @@ const initialCards = [
 ];
 
 
-
+//Объявляем переменные
+const profileAddButton = document.querySelector('.profile__add-button');
+const popupAboutPhotoCard = document.querySelector('.popup__about_photo-card');
+const popupAboutOccupationPhotoCard = document.querySelector('.popup__about_occupation_photo-card');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const popupAboutName = document.querySelector('.popup__about_name');
+const popupAboutOccupationName = document.querySelector('.popup__about_occupation_name');
 
 
 //форма для валидации
@@ -56,7 +62,7 @@ const enableValidationForm = {
 
 //Открытие карточки
 const popupWithImage = new PopupWithImage('.popup__photo-big-card');
-popupWithImage.setEventListeners();
+
 
 
 const handleCardClick = (name, link) => {
@@ -73,15 +79,12 @@ const renderer = (item) => {
 
 
 const section = new Section({ items: initialCards, renderer }, '.elements');
-section.renderItems();
 
 
 //Валидация 
 const formValidatorNew = new FormValidator(enableValidationForm, enableValidationForm.popupInputName);
-formValidatorNew.enableValidation();
 
 const formValidatorCard = new FormValidator(enableValidationForm, enableValidationForm.popupInputPhotoCard);
-formValidatorCard.enableValidation();
 
 
 
@@ -93,11 +96,6 @@ const userInfo = new UserInfo({
 
 
 //popup для добавлением новой карточки
-const profileAddButton = document.querySelector('.profile__add-button');
-const popupAboutPhotoCard = document.querySelector('.popup__about_photo-card');
-const popupAboutOccupationPhotoCard = document.querySelector('.popup__about_occupation_photo-card');
-
-
 const popupWithForm = new PopupWithForm({
     popupSelector: '.popup_photo-card',
     form: () => {
@@ -113,13 +111,8 @@ profileAddButton.addEventListener("click", () => {
     popupWithForm.open();
 });
 
-popupWithForm.setEventListeners();
-
 
 //popup с редактированием имени и рода занятий
-const profileEditButton = document.querySelector('.profile__edit-button');
-
-
 const popupWithFormName = new PopupWithForm({
     popupSelector: '.popup_name',
     form: (items) => {
@@ -129,18 +122,20 @@ const popupWithFormName = new PopupWithForm({
     },
 });
 
-popupWithFormName.setEventListeners();
-
-
 
 //редактирование имени и рода занятий
-const popupAboutName = document.querySelector('.popup__about_name');
-const popupAboutOccupationName = document.querySelector('.popup__about_occupation_name');
-
-
 profileEditButton.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
     popupAboutOccupationName.value = userData.occupation;
     popupAboutName.value = userData.name;
     popupWithFormName.open();
 });
+
+
+//Обработчики событий
+popupWithImage.setEventListeners();
+section.renderItems();
+formValidatorNew.enableValidation();
+formValidatorCard.enableValidation();
+popupWithForm.setEventListeners();
+popupWithFormName.setEventListeners();

@@ -9,9 +9,13 @@ class Section {
         this._items.forEach(item => this._renderer(item));
             };
 
-    addItem(element) {
-        this._selector.append(element);
-    }
+    addItem(element, items) { 
+        if (items) { 
+            this._selector.append(element); 
+        } else { 
+            this._selector.prepend(element); 
+        } 
+    } 
 }
 
 

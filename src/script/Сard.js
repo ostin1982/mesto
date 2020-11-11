@@ -23,7 +23,8 @@ class Card {
 
     //Удаление карточки
     _handleDeleteClick() {
-        this._htmlElement.querySelector('.element__basket').closest('.element__card').remove();
+        this._htmlElement.remove();
+        this._htmlElement = null;
     }
 
 
@@ -31,7 +32,7 @@ class Card {
     _setEventListeners() {
         this._htmlElement.querySelector('.element__like').addEventListener('click', () => this._handleLikeClick());
         this._htmlElement.querySelector('.element__basket').addEventListener('click', () => this._handleDeleteClick());
-        this._htmlElement.addEventListener('click', () => this._handleCardClick((this._name, this._link)));
+        this._htmlElement.querySelector('.element__img').addEventListener('click', () => this._handleCardClick((this._name, this._link)));
     }
     
 
