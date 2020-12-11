@@ -17,7 +17,7 @@ class FormValidator {
     _showInputError(popupAbout, errorMessage) {
         const popupError = this._popupForm.querySelector(`#${popupAbout.id}-error`);
         popupAbout.classList.add(this._popupAboutRedLineForm);
-        popupError.textContent = errorMessage; 
+        popupError.innerText = errorMessage; 
         popupError.classList.add(this._popupAboutErrorForm);    
     }
     
@@ -26,7 +26,7 @@ class FormValidator {
         const popupError = this._popupForm.querySelector(`#${popupAbout.id}-error`);    
         popupAbout.classList.remove(this._popupAboutRedLineForm);
         popupError.classList.remove(this._popupAboutErrorForm);    
-        popupError.textContent = "";
+        popupError.innerText = "";
     }
 
     _getErrorMessage(popupAbout){
@@ -72,11 +72,11 @@ class FormValidator {
     }
 
     _setEventListeners() {
-        this._toggleButtonState();
+        this._toggleButtonState(this._inputList);
         this._inputList.forEach((popupAbout) => {
             popupAbout.addEventListener('input', () => {
                 this._checkInputValidity(popupAbout);
-                this._toggleButtonState();
+                this._toggleButtonState(this._inputList);
             })
         })
     } 

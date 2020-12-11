@@ -7,6 +7,7 @@
 @import url("../blocks/content/content.css");
 @import url("../blocks/profile/profile.css");
 @import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__avatar/profile__avatar-img.css");
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__edit/profile__edit.css");
 @import url("../blocks/profile/__name/profile__name.css");
@@ -18,10 +19,13 @@
 @import url("../blocks/element/__card/element__card.css");
 @import url("../blocks/element/__img/element__img.css");
 @import url("../blocks/element/__basket/element__basket.css");
+@import url("../blocks/element/__basket/_basket/element__basket_active.css");
 @import url("../blocks/element/__info/element__info.css");
 @import url("../blocks/element/__name/element__name.css");
 @import url("../blocks/element/__like/element__like.css");
 @import url("../blocks/element/__like/_active/element__like_active.css");
+@import url("../blocks/element/__like-number/__like-number.css");
+@import url("../blocks/element/__like-conteiner/element__like-conteiner.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/footer__copyright/footer__copyright.css");
 @import url("../blocks/popup/popup.css");
@@ -37,6 +41,7 @@
 @import url("../blocks/popup/__about/_about/popup__about_name.css");
 @import url("../blocks/popup/__about/_about/popup__about_occupation.css");
 @import url("../blocks/popup/__about/_about/popup__about_active.css");
+@import url("../blocks/popup/__about/_about/popup__about_new-avatar.css");
 @import url("../blocks/popup/__submit/popup__submit.css");
 @import url("../blocks/popup/__submit/_submit/popup__submit_inactive.css");
 @import url("../blocks/popup/__close/popup__close.css");
@@ -47,3 +52,8 @@
 @import url("../blocks/popup/__photo-big/popup__photo-big.css");
 @import url("../blocks/popup/__photo-close/popup__photo-close.css");
 @import url("../blocks/popup/__photo-edit/popup__photo-edit.css");
+@import url("../blocks/popup/__photo-delete/popup__photo-delete.css");
+@import url("../blocks/popup/__photo-delete/_photo-delete/popup__photo-delete_container.css");
+@import url("../blocks/popup/__photo-delete/_photo-delete/popup__photo-delete_input.css");
+@import url("../blocks/popup/__new-avatar/popup__new-avatar.css");
+@import url("../blocks/popup/__about/_about/popup__about_new-avatar.css");

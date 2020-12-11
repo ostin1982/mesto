@@ -1,25 +1,27 @@
 class UserInfo {
-    constructor({name, occupation}) {        
-        this._name = document.querySelector(name);
-        this._occupation = document.querySelector(occupation);
+    constructor({name, about, avatar}) {        
+        this._name = name;
+        this._occupation = about;
+        this._avatar = avatar;
         this._userInfo = {};
     }
 
     getUserInfo() {
         return {
-            name: this._name.textContent,
-            occupation: this._occupation.textContent,
+            name: this._name.innerText,
+            occupation: this._occupation.innerText,
             };
         };
 
-    setUserInfo(userInfo) {
-        this._userInfo = userInfo;
-        }
-
-    renderUserInfo() {
-        this._name.textContent = this._userInfo.name;
-        this._occupation.textContent = this._userInfo.occupation;
+    setUserInfo(item) {
+        if (item.name) {
+            this._name.innerText = item.name};
+            if(item.about) {
+            this._occupation.innerText = item.about};
+            if(item.avatar) {
+            this._avatar.src = item.avatar};  
         }
 }
+
 
 export default UserInfo;

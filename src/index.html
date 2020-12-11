@@ -13,7 +13,9 @@
         </header>    
         <main class="content">
             <section class="profile">
-                <img src="./images/Avatar.png" alt="Аватар" class="profile__avatar">
+                <div class="profile__avatar">
+                    <img src="./images/Avatar.png" alt="Аватар" class="profile__avatar-img">
+                </div>
                 <div class="profile__info">                   
                     <div class="profile__edit">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -30,58 +32,88 @@
         <footer class="footer">
             <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
+        <!--Popup редактирование профиля-->
         <section class="popup popup_name">
             <div class="popup__container">
                 <h2 class="popup__edit">Редактировать профиль</h2>
-                <form class="popup__input popup__input_name" name="input" novalidate>
+                <form class="popup__input popup__input_name" method="POST" name="input" novalidate>
                     <label for="sign-in-name" class="popup__span">
                         <input class="popup__about popup__about_grey-line popup__about_name" id="sign-in-name" type="text" placeholder="Имя" value="" name="name" required minlength="2" maxlength="40" autocomplete="off">                 
                         <span class="" id="sign-in-name-error"></span>
                     </label>
                     <label for="sign-in-occupation" class="popup__span">
-                        <input class="popup__about popup__about_grey-line popup__about_occupation_name" id="sign-in-occupation" type="text" placeholder="О себе" value="" name="occupation" required minlength="2" maxlength="200" autocomplete="off">
+                        <input class="popup__about popup__about_grey-line popup__about_occupation_name" id="sign-in-occupation" type="text" placeholder="О себе" value="" name="about" required minlength="2" maxlength="200" autocomplete="off">
                         <span class="" id="sign-in-occupation-error"></span>
                     </label>
                     <button type="submit" class="popup__submit popup__submit_name">Сохранить</button>                    
                 </form>
-                <button class="popup__close"></button>                                
+                <button class="popup__close"  type="button"></button>                                
             </div>
         </section>
+        <!--Popup добавление новой картинки-->
         <section class="popup popup_photo-card">
             <div class="popup__container">
                 <h2 class="popup__edit">Новое место</h2>
-                <form class="popup__input popup__input_photo-card" name="input" novalidate>
+                <form class="popup__input popup__input_photo-card" method="POST" name="input" novalidate>
                     <label for="sign-in-photo-card-name" class="popup__span">
                         <input class="popup__about popup__about_grey-line popup__about_photo-card" id="sign-in-photo-card-name" type="text" placeholder="Название" value="" name="name" required minlength="2" maxlength="30" autocomplete="off">
                         <span class="" id="sign-in-photo-card-name-error"></span>  
                     </label>
                     <label for="sign-in-photo-card-occupation" class="popup__span">
-                        <input class="popup__about popup__about_grey-line popup__about_occupation_photo-card" id="sign-in-photo-card-occupation" type="url" placeholder="Ссылка на картинку" value="" name="occupation" required autocomplete="off">
+                        <input class="popup__about popup__about_grey-line popup__about_occupation_photo-card" id="sign-in-photo-card-occupation" type="url" placeholder="Ссылка на картинку" value="" name="about" required autocomplete="off">
                         <span class="" id="sign-in-photo-card-occupation-error"></span>
                     </label>
                     <button type="submit" class="popup__submit popup__submit_photo-card">Создать</button>
                 </form>                    
-                <button class="popup__close"></button>
+                <button class="popup__close"  type="button"></button>
             </div>
         </section>
+        <!--Popup увеличение картинки-->
         <section class="popup popup__photo-big-card">
             <div class="popup__photo-element">
                 <img src="#" alt="#" class="popup__photo-big">                               
-                <button class="popup__close popup__photo-close"></button>
+                <button class="popup__close popup__photo-close"  type="button"></button>
                 <p class="popup__photo-edit"></p>
             </div>           
         </section>
+        <!--Popup смена аватара-->
+        <section class="popup popup__new-avatar">
+            <div class="popup__container">                
+                <h2 class="popup__edit">Обновить аватар</h2>
+                <form class="popup__input popup__input_new-avatar" method="POST" name="input" novalidate>
+                    <label for="sign-in-new-avatar-about" class="popup__span">           
+                        <input class="popup__about popup__about_grey-line popup__about_new-avatar" id="sign-in-photo-card-occupation" type="url"  placeholder="Ссылка на картинку" value="" name="avatar" required autocomplete="off">
+                        <span class="" id="sign-in-photo-card-occupation-error"></span>
+                    </label>  
+                    <button type="submit" class="popup__submit popup__submit_new-avatar">Сохранить</button>
+                </form>
+                <button class="popup__close" type="button"></button>
+            </div>
+        </section>
+        <!--Popup удаление картинки-->
+        <section class="popup popup__photo-delete">
+            <div class="popup__container">                
+                <h2 class="popup__edit">Вы уверены?</h2>
+                <form class="popup__input popup__photo-delete_input" method="POST" name="popupDelete" novalidate></form>
+                    <button type="submit" class="popup__submit popup__photo-delete_container">Да</button>
+                </form>
+                <button class="popup__close" type="button"></button>
+            </div>
+        </section>
+        <!--Загатовка для картинок-->
         <template class="element">
             <article class="element__card">
                 <img src="#" alt="#" class="element__img">
                 <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name"></h2>
+                    <div class="element__like-conteiner">
                     <button class="element__like" type="button"></button>
+                    <span class="element__like-number"></span>
+                    </div>
                 </div>
             </article>
         </template>
     </div> 
-   
 </body>
 </html>
