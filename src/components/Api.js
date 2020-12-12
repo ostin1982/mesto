@@ -4,7 +4,7 @@ class Api {
     this._headers = headers;
     }
 
-    _fetchButCatch(url, init) {
+    _addCommonFetchForAllApis(url, init) {
         return fetch(url, init)
         .then((response) => {
             if (response.ok) {
@@ -17,7 +17,7 @@ class Api {
     
     //Получить карточки с сервера
     getInitialCards() {
-        return this._fetchButCatch(`${this._baseUrl}/cards`, {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/cards`, {
             method: "GET",
             headers: this._headers
         })
@@ -25,8 +25,8 @@ class Api {
 
     //Блок работы с карточками
     //Добавление карточки
-    newCard(card) {
-        return this._fetchButCatch(`${this._baseUrl}/cards`, {
+    addNewCard(card) {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -39,7 +39,7 @@ class Api {
 
     //Удаление карточки
     deleteCard(card) {
-        return this._fetchButCatch(`${this._baseUrl}/cards/${card._id}`, {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/cards/${card._id}`, {
             method: 'DELETE',
             headers: this._headers,
             body: JSON.stringify()
@@ -47,8 +47,8 @@ class Api {
     }
 
     //Лайк картинке
-    likeCard(card) {
-        return this._fetchButCatch(`${this._baseUrl}/cards/likes/${card._id}`, {
+    addLikeCard(card) {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/cards/likes/${card._id}`, {
             method: 'PUT',
             headers: this._headers,
             body: JSON.stringify()
@@ -57,7 +57,7 @@ class Api {
 
     //Удаление лайк картинке
     deleteLikeCard(card) {
-        return this._fetchButCatch(`${this._baseUrl}/cards/likes/${card._id}`, {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/cards/likes/${card._id}`, {
             method: 'DELETE',
             headers: this._headers,
             body: JSON.stringify()
@@ -66,16 +66,16 @@ class Api {
 
     //Блок работы с профилем
     //Получить данные пользователя
-    userInfoAbout() {
-        return this._fetchButCatch(`${this._baseUrl}/users/me`, {
+    getUserInfoAbout() {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/users/me`, {
             method: "GET",
             headers: this._headers
         })
     }
 
     //Редактировать данные пользователя
-    newInfo(userData) {
-        return this._fetchButCatch(`${this._baseUrl}/users/me`, {
+    changeInfo(userData) {
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -86,8 +86,8 @@ class Api {
     }
 
     //Редактировать аватар пользователя
-    newUserAvatar(imgSrc){
-        return this._fetchButCatch(`${this._baseUrl}/users/me/avatar`, {
+    changeUserAvatar(imgSrc){
+        return this._addCommonFetchForAllApis(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({

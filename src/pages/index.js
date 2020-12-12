@@ -1,13 +1,13 @@
-import './index.css';
+import '../pages/index.css';
 
-import Api from '../script/Api.js';
-import Card from '../script/Сard.js';
-import FormValidator from '../script/FormValidator.js';
-import Section from '../script/Section.js';
-import PopupWithImage from '../script/PopupWithImage.js';
-import PopupWithForm from '../script/PopupWithForm.js';
-import PopupWithSubmit from '../script/PopupWithSubmit.js';
-import UserInfo from '../script/UserInfo.js';
+import Api from '../components/Api.js';
+import Card from '../components/Сard.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit.js';
+import UserInfo from '../components/UserInfo.js';
 
 
 const api = new Api({
@@ -53,7 +53,7 @@ const profileAvatar = document.querySelector('.profile__avatar');
 
 let userId;
 
-Promise.all([api.getInitialCards(), api.userInfoAbout()])
+Promise.all([api.getInitialCards(), api.getUserInfoAbout()])
     .then(([card, userData, imgSrc]) => { 
         userId = userData._id;       
         userInfo.setUserInfo(userData, imgSrc);
@@ -83,6 +83,9 @@ const section = new Section({
 
 //Блок работа с карточкой
 //Создание карточки
+/** добавил в PopupWithSubmit.js setFormSubmitHandler */
+const popupWithSubmit = new PopupWithSubmit(popupPhotoDelete);
+
 const createCardCopy = (card) => {
     const cardCopy = new Card (userId, {        
         data: card, 
@@ -91,7 +94,7 @@ const createCardCopy = (card) => {
         },
 
         handleLikeClick: () => {
-            api.likeCard(card)
+            api.addLikeCard(card)
             .then((response) => {
                 cardCopy.getLikes(response);
             })
@@ -107,14 +110,14 @@ const createCardCopy = (card) => {
         },
 
         handleDeleteClick: () => {
-            const popupWithSubmit = new PopupWithSubmit(
-                popupPhotoDelete, () => {
+            /** вызываю таким образом. Надеюсь правильно понял. */
+            popupWithSubmit.setFormSubmitHandler(() => {
                 popupPhotoDeleteContainer.innerText = "Удаление...";
                 api.deleteCard(card)                
                 .then(() => {
                     popupWithSubmit.close();
                     popupPhotoDeleteContainer.innerText = "Да";
-                    card.removeCard();
+                    cardCopy.removeCard();
                     })             
                 .catch(error => console.log(`Ошибка при удалении карточки: ${error}`))
                 })
@@ -126,6 +129,7 @@ const createCardCopy = (card) => {
         return cardCopy;
 }
 
+
 const popupWithImage = new PopupWithImage(popupPhotoBigCard);
 popupWithImage.setEventListeners();
 
@@ -135,7 +139,7 @@ const popupWithFormCard = new PopupWithForm(
     popupPhotoCard, (card) => {
         popupSubmitPhotoCard.innerText = 'Сохранение...';
         popupInputName;
-        api.newCard({
+        api.addNewCard({
             name: card.name,
             link: card.about,
             })
@@ -165,7 +169,7 @@ const popupWithForm = new PopupWithForm(
     popupName, (card) => { 
         popupInputName;
         popupSubmitName.innerText = 'Сохранение...';
-        api.newInfo(card)
+        api.changeInfo(card)
         .then(result => {
             userInfo.setUserInfo({name: result.name, about: result.about}); 
             popupSubmitPhotoCard.innerText = 'Сохранить';
@@ -189,7 +193,7 @@ const popupWithFormAvatar = new PopupWithForm (
     popupNewAvatar, (card) => { 
         popupInputName;  
         popupSubmitNewAvatar.innerText = 'Сохранение...';
-        api.newUserAvatar(card)
+        api.changeUserAvatar(card)
         .then((result) => {
             userInfo.setUserInfo({avatar: result.avatar});
             popupSubmitNewAvatar.innerText = 'Сохранить';

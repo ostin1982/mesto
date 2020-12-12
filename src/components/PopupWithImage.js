@@ -1,10 +1,10 @@
 import Popup from './Popup.js';
 
 class PopupWithImage extends Popup {
-    constructor(popupSelector) {
-        super(popupSelector);
-        this._popupPhotoBig = this._popupSelector.querySelector('.popup__photo-big');
-        this._popupPhotoEdit = this._popupSelector.querySelector('.popup__photo-edit');
+    constructor(modalWindow) {
+        super(modalWindow);
+        this._popupPhotoBig = this._modalWindow.querySelector('.popup__photo-big');
+        this._popupPhotoEdit = this._modalWindow.querySelector('.popup__photo-edit');
     }
 
     open(data) {

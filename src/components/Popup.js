@@ -1,6 +1,6 @@
 class Popup {
-    constructor(popupSelector) {
-        this._popupSelector = popupSelector;
+    constructor(modalWindow) {
+        this._modalWindow = modalWindow;
         this._handleEscClose = this._handleEscClose.bind(this);
     }
 
@@ -11,17 +11,17 @@ class Popup {
     }
 
     open() {
-        this._popupSelector.classList.add('popup_is-open');
+        this._modalWindow.classList.add('popup_is-open');
         document.addEventListener('keyup', this._handleEscClose);
     }
 
     close() {
-        this._popupSelector.classList.remove('popup_is-open'); 
+        this._modalWindow.classList.remove('popup_is-open'); 
         document.removeEventListener('keyup', this._handleEscClose);
     }
 
     setEventListeners() {
-        this._popupSelector.addEventListener('click', (event) => {
+        this._modalWindow.addEventListener('click', (event) => {
             if (event.target.classList.contains("popup__container") || event.target.classList.contains("popup__close") || event.target === event.currentTarget) {
                 this.close();
             }

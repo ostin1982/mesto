@@ -11,10 +11,8 @@ class Section {
             });
         };
 
-    addItem(card, items) { 
-        items ? 
-        this._selector.prepend(card):
-        this._selector.append(card);
+    addItem(card) { 
+        this._selector.prepend(card);
     } 
 }
 
