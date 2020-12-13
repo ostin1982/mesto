@@ -83,7 +83,6 @@ const section = new Section({
 
 //Блок работа с карточкой
 //Создание карточки
-/** добавил в PopupWithSubmit.js setFormSubmitHandler */
 const popupWithSubmit = new PopupWithSubmit(popupPhotoDelete);
 
 const createCardCopy = (card) => {
@@ -110,7 +109,6 @@ const createCardCopy = (card) => {
         },
 
         handleDeleteClick: () => {
-            /** вызываю таким образом. Надеюсь правильно понял. */
             popupWithSubmit.setFormSubmitHandler(() => {
                 popupPhotoDeleteContainer.innerText = "Удаление...";
                 api.deleteCard(card)                
@@ -172,7 +170,7 @@ const popupWithForm = new PopupWithForm(
         api.changeInfo(card)
         .then(result => {
             userInfo.setUserInfo({name: result.name, about: result.about}); 
-            popupSubmitPhotoCard.innerText = 'Сохранить';
+            popupSubmitName.innerText = 'Сохранить';
             popupWithForm.close()
         })
         .catch(error => console.log(`Ошибка при изменении данных профиля: ${error}`))
